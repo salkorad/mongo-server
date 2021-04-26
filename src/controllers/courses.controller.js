@@ -14,7 +14,7 @@ const create = (req, res) => {
 const list = (req, res) => {
     Course.find((err, data) => {
         if(err){
-            console.log(err);
+            return res.status(400).json(err.message);
         }
         res.status(200).json(data);
     });
@@ -23,7 +23,7 @@ const read = (req, res) => {
     const id = req.params.id;
     Course.findById(id).exec((err, data) => {
         if(err){
-            console.log(err);
+            return res.status(400).json(err.message);
         }
         res.status(200).json(data);
     });
